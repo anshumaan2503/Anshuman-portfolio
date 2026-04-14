@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ffb4a8;
+  --color-primary-container: #8b0000;
+  --color-on-primary-container: #ff907f;
+  --color-secondary: #ffb5a0;
+  --color-tertiary: #bcc3ff;
+  --color-background: #0a0a0a;
+  --color-surface-container: #111111;
+  --color-surface-variant: #2a2a2a;
+  --color-on-surface-variant: #d1b5b0;
+  --color-outline-variant: #443533;
+  --color-outline: #8a706c;
+  
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -5px var(--color-primary-container);
+    }
+    to {
+      box-shadow: 0 0 20px 2px var(--color-primary-container);
+    }
+    @keyframes scan {
+      from { transform: translateY(-50vh); }
+      to { transform: translateY(50vh); }
+    }
+    @keyframes gradient-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-scan {
+      animation: scan 8s linear infinite;
+    }
+    .animate-gradient-flow {
+      animation: gradient-flow 6s ease infinite;
+    }
+  }
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #e2e2e2;
+  --primary: #ffb4a8;
+  --primary-container: #8b0000;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.text-gradient {
+  background: linear-gradient(to bottom right, #ffb4a8, #8b0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 180, 168, 0.05);
+}
+
+.ambient-red-glow {
+  background: radial-gradient(circle at center, rgba(139, 0, 0, 0.35) 0%, transparent 70%);
+  filter: blur(60px);
+}
+
