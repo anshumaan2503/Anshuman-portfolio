@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: anshuman-portfolio
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./out
+    pullRequestPreviewsEnabled: true
+    headers:
+      # Cache static assets aggressively, HTML never
+      - path: /
+        name: Cache-Control
+        value: "no-cache"
+      - path: "/*.html"
+        name: Cache-Control
+        value: "no-cache"
+      - path: "/_next/static/*"
+        name: Cache-Control
+        value: "public, max-age=31536000, immutable"
+    routes:
+      # SPA-style fallback: any unknown path → index.html
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
