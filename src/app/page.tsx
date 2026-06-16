@@ -11,8 +11,11 @@ import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/ui/Footer";
 import { Preloader } from "@/components/ui/Preloader";
+import { useRole } from "@/lib/RoleContext";
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const { role } = useRole();
 
   return (
     <>
@@ -28,14 +31,26 @@ export default function Home() {
           className="relative min-h-screen bg-background selection:bg-primary/30"
         >
           <Navbar />
-          <Hero />
-          <div className="relative z-10">
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Contact />
-          </div>
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={role}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Hero />
+              <div className="relative z-10">
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          
           <Footer />
         </motion.main>
       )}

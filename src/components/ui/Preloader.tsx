@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   const [percent, setPercent] = useState(0);

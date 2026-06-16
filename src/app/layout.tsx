@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Senior Backend Developer specializing in scalable Java & Spring Boot architectures.",
 };
 
+import { RoleProvider } from "@/lib/RoleContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="bg-background text-foreground antialiased selection:bg-primary-container selection:text-white">
-        {children}
+        <RoleProvider>
+          {children}
+        </RoleProvider>
       </body>
     </html>
   );

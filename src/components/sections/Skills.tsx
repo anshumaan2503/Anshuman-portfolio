@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Terminal, Layers, Database, Wrench } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { Terminal, Layers, Database, Wrench, ClipboardList, TrendingUp, Cpu, Workflow } from "lucide-react";
+import { useRole } from "@/lib/RoleContext";
 
-const skillCategories = [
+const backendSkills = [
   {
     title: "Languages",
     icon: Terminal,
@@ -39,11 +40,62 @@ const skillCategories = [
   },
 ];
 
+const baSkills = [
+  {
+    title: "BA Core",
+    icon: ClipboardList,
+    color: "#ff2d2d",
+    glow: "#ff2d2d",
+    index: "01",
+    skills: ["BRD", "PRD", "FRD", "User Stories", "Use Cases", "RTM", "UAT", "Gap Analysis"],
+  },
+  {
+    title: "Process & Strategy",
+    icon: Workflow,
+    color: "#ff6b35",
+    glow: "#ff6b35",
+    index: "02",
+    skills: ["AS-IS/TO-BE Mapping", "SWOT", "PESTLE", "Stakeholder Management", "Agile Scrum", "Business Process Modeling"],
+  },
+  {
+    title: "Tools & Analytics",
+    icon: TrendingUp,
+    color: "#c0392b",
+    glow: "#c0392b",
+    index: "03",
+    skills: ["Power BI", "Jira", "Figma", "MS Excel", "SQL", "Git"],
+  },
+  {
+    title: "Technical (Supporting)",
+    icon: Cpu,
+    color: "#e74c3c",
+    glow: "#e74c3c",
+    index: "04",
+    skills: ["Java", "Spring Boot", "REST APIs", "MySQL", "PostgreSQL", "Docker", "React.js"],
+  },
+];
+
+const STREAM_DURATIONS = [12.5, 18.2, 11.4, 15.6, 19.1, 14.3, 17.8, 13.2, 16.5, 10.9];
+const STREAM_DELAYS = [2.4, 5.1, 8.7, 1.2, 12.5, 3.6, 7.3, 11.1, 9.4, 14.8];
+const STREAM_DATA = [
+  "10100110101011001010110110101001101010101100101011",
+  "01101010110010101101101010011010101011001010110101",
+  "11001010110110101001101010101100101011010101101011",
+  "01010011010101011001010110110101001101010101100101",
+  "10110110101001101010101100101011010101101011010100",
+  "00110101010110010101101101010011010101011001010110",
+  "10101101101010011010101011001010110101011010110101",
+  "01101010011010101011001010110101011010110101001101",
+  "11001010110101011010110101001101010101100101011011",
+  "00101011010101101011010100110101010110010101101101"
+];
+
+
 function SkillModule({
   category,
   index,
 }: {
-  category: (typeof skillCategories)[0];
+  category: typeof baSkills[0];
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -230,6 +282,9 @@ function SkillModule({
 }
 
 export const Skills = () => {
+  const { role } = useRole();
+  const categories = role === "analyst" ? baSkills : backendSkills;
+
   return (
     <section
       className="relative py-20 md:py-40 px-6 md:px-12 overflow-hidden bg-black"
@@ -246,16 +301,16 @@ export const Skills = () => {
 
       {/* DIGITAL DATA STREAM EFFECT */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-        {[...Array(10)].map((_, i) => (
+        {STREAM_DATA.map((streamStr, i) => (
           <motion.div
             key={i}
             initial={{ y: "-100%" }}
             animate={{ y: "100%" }}
             transition={{ 
-              duration: Math.random() * 10 + 10, 
+              duration: STREAM_DURATIONS[i], 
               repeat: Infinity, 
               ease: "linear",
-              delay: Math.random() * 20
+              delay: STREAM_DELAYS[i]
             }}
             className="absolute text-[8px] font-mono whitespace-nowrap text-primary/20"
             style={{ 
@@ -263,7 +318,7 @@ export const Skills = () => {
               writingMode: "vertical-rl"
             }}
           >
-            {Array(50).fill(0).map(() => (Math.random() > 0.5 ? "1" : "0")).join("")}
+            {streamStr}
           </motion.div>
         ))}
       </div>
@@ -282,14 +337,16 @@ export const Skills = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-px bg-primary" />
-            <span className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">My Arsenal</span>
+            <span className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">
+              {role === "analyst" ? "BA Toolkit" : "My Arsenal"}
+            </span>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
             <h2 className="text-4xl md:text-7xl font-headline font-black uppercase tracking-tighter leading-[1.1] md:leading-none">
-              The Tech{" "}
+              {role === "analyst" ? "BA " : "The Tech "}
               <span className="text-transparent bg-clip-text"
                 style={{ WebkitTextStroke: "1px #ff2d2d" }}>
-                Stack
+                {role === "analyst" ? "Toolkit" : "Stack"}
               </span>
             </h2>
             <div className="flex items-center gap-4 text-right">
@@ -303,14 +360,21 @@ export const Skills = () => {
         </motion.div>
 
         {/* 3D Grid */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {skillCategories.map((cat, idx) => (
-            <SkillModule key={cat.title} category={cat} index={idx} />
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={role}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {categories.map((cat, idx) => (
+              <SkillModule key={cat.title} category={cat} index={idx} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

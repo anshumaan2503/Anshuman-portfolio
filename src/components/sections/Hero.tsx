@@ -1,11 +1,13 @@
 
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useEffect } from "react";
+import React from "react";
+import { useRole } from "@/lib/RoleContext";
 
 export const Hero = () => {
+  const { role } = useRole();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -51,23 +53,27 @@ export const Hero = () => {
           }}
           className="w-full"
         >
-          <motion.h2
-            variants={{
-              hidden: { opacity: 0, x: -10 },
-              visible: { opacity: 1, x: 0 }
-            }}
-            className="text-red-400 font-bold uppercase mb-4 text-[10px] md:text-xs flex items-center justify-center md:justify-start gap-3 tracking-[0.3em]"
-          >
-            <span className="w-8 h-[1px] bg-red-500 hidden md:block" />
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.4, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-              className="mr-1"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={role}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.2 }}
             >
-              &gt;
-            </motion.span>
-            BACKEND_SYSTEM ARCHITECT
-          </motion.h2>
+              <h2 className="text-red-400 font-bold uppercase mb-4 text-[10px] md:text-xs flex items-center justify-center md:justify-start gap-3 tracking-[0.3em]">
+                <span className="w-8 h-[1px] bg-red-500 hidden md:block" />
+                <motion.span
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ duration: 0.4, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+                  className="mr-1"
+                >
+                  &gt;
+                </motion.span>
+                {role === "analyst" ? "BUSINESS_ANALYST" : "BACKEND_SYSTEM ARCHITECT"}
+              </h2>
+            </motion.div>
+          </AnimatePresence>
 
           <motion.h1
             variants={{
@@ -87,15 +93,20 @@ export const Hero = () => {
             </motion.span>
           </motion.h1>
 
-          <motion.p
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1 }
-            }}
-            className="text-sm md:text-lg text-red-100/70 max-w-lg mb-10 leading-relaxed border-l-0 md:border-l-2 border-red-500/30 pl-0 md:pl-6 mx-auto md:mx-0"
-          >
-            Engineering scalable backend systems using Java and Spring Boot, with a strong focus on system design, performance, and reliable API architecture.
-          </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={role}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="text-sm md:text-lg text-red-100/70 max-w-lg mb-10 leading-relaxed border-l-0 md:border-l-2 border-red-500/30 pl-0 md:pl-6 mx-auto md:mx-0 min-h-[80px]"
+            >
+              {role === "analyst"
+                ? "Translating business complexity into structured requirements. Bridging the gap between stakeholder vision and technical delivery through Agile, data analysis, and process engineering."
+                : "Engineering scalable backend systems using Java and Spring Boot, with a strong focus on system design, performance, and reliable API architecture."}
+            </motion.p>
+          </AnimatePresence>
 
           <motion.div
             variants={{
