@@ -52,7 +52,7 @@ export const RoleProvider = ({ children }: { children: React.ReactNode }) => {
                 SYS_PROFILE_RELOAD
               </span>
               <span className="text-[8px] text-red-500/50 mt-1.5 uppercase tracking-widest">
-                {pendingRole === "backend" ? "LOAD // BACKEND_ARCHITECT" : "LOAD // BUSINESS_ANALYST"}
+                {pendingRole === "backend" ? "LOAD // SOFTWARE_DEVELOPER" : "LOAD // BUSINESS_ANALYST"}
               </span>
             </div>
           </motion.div>

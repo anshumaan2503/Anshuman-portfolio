@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Anshuman Tiwari | Backend Architect",
-  description: "Senior Backend Developer specializing in scalable Java & Spring Boot architectures.",
+  title: "Anshuman Tiwari | Software Developer",
+  description: "Software Developer specializing in Java, Spring Boot & Full-Stack architecture.",
 };
 
 import { RoleProvider } from "@/lib/RoleContext";

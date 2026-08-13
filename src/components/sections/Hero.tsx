@@ -70,7 +70,7 @@ export const Hero = () => {
                 >
                   &gt;
                 </motion.span>
-                {role === "analyst" ? "BUSINESS_ANALYST" : "BACKEND_SYSTEM ARCHITECT"}
+                {role === "analyst" ? "BUSINESS_ANALYST" : "SOFTWARE_DEVELOPER"}
               </h2>
             </motion.div>
           </AnimatePresence>
@@ -104,7 +104,7 @@ export const Hero = () => {
             >
               {role === "analyst"
                 ? "Translating business complexity into structured requirements. Bridging the gap between stakeholder vision and technical delivery through Agile, data analysis, and process engineering."
-                : "Engineering scalable backend systems using Java and Spring Boot, with a strong focus on system design, performance, and reliable API architecture."}
+                : "Engineering scalable software applications using Java, Spring Boot, and modern web technologies, with a strong focus on system design, performance, and reliable architecture."}
             </motion.p>
           </AnimatePresence>
 

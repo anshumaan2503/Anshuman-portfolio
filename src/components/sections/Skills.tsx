@@ -15,7 +15,7 @@ const backendSkills = [
     skills: ["Java", "Python", "JavaScript", "SQL"],
   },
   {
-    title: "Backend",
+    title: "Backend & Core",
     icon: Layers,
     color: "#ff6b35",
     glow: "#ff6b35",

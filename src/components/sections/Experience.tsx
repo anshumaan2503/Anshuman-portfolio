@@ -5,7 +5,7 @@ import { useRole } from "@/lib/RoleContext";
 
 const backendExperiences = [
   {
-    role: "Full Stack Developer",
+    role: "Software Developer",
     company: "Freelance / Academic Projects",
     period: "Jan 2025 – Present",
     description: [

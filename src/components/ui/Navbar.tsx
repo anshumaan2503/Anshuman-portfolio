@@ -60,7 +60,7 @@ export const Navbar = () => {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              &lt; BACKEND /&gt;
+              &lt; SOFTWARE DEVELOPER /&gt;
             </button>
 
             <button
@@ -96,7 +96,7 @@ export const Navbar = () => {
               );
             })}
             <a 
-              href={role === "analyst" ? "/Anshuman_Tiwari_Resume_BA.pdf" : "/Anshuman_Tiwari_Resume_Backend.pdf"} 
+              href={role === "analyst" ? "/Anshuman_Tiwari_Resume_BA.pdf" : "/Anshuman_Tiwari_Software_Developer_Resume.pdf"} 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-primary-container text-white px-6 py-2 font-headline text-xs font-bold tracking-widest uppercase hover:bg-secondary-container transition-all active:scale-95 flex items-center justify-center"
@@ -139,7 +139,7 @@ export const Navbar = () => {
                 );
               })}
               <a 
-                href={role === "analyst" ? "/Anshuman_Tiwari_Resume_BA.pdf" : "/Anshuman_Tiwari_Resume_Backend.pdf"} 
+                href={role === "analyst" ? "/Anshuman_Tiwari_Resume_BA.pdf" : "/Anshuman_Tiwari_Software_Developer_Resume.pdf"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-primary-container text-white px-6 py-3 font-headline text-sm font-bold tracking-widest uppercase w-full flex items-center justify-center"

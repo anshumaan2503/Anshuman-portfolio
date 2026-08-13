@@ -20,16 +20,16 @@ export const About = () => {
               className="grid md:grid-cols-2 gap-10 md:gap-20 items-start"
             >
               <div className="md:sticky md:top-32 text-center md:text-left">
-                <span className="text-primary font-headline text-[10px] md:text-sm tracking-[0.3em] uppercase">01 // THE ARCHITECT</span>
+                <span className="text-primary font-headline text-[10px] md:text-sm tracking-[0.3em] uppercase">01 // THE DEVELOPER</span>
                 <h2 className="text-4xl md:text-6xl font-headline font-black mt-4 uppercase tracking-tighter">Technical Narrative</h2>
               </div>
               
               <div className="space-y-6 md:space-y-8 text-on-surface-variant font-body text-base md:text-lg leading-relaxed text-center md:text-left">
                 <p>
-                  I view backend architecture as the structural steel of the digital world. My focus lies at the intersection of <span className="text-white font-semibold">distributed systems</span> and <span className="text-white font-semibold">high-concurrency engineering</span>. 
+                  I view software development as building the structural steel of the digital world. My focus lies at the intersection of <span className="text-white font-semibold">scalable software engineering</span> and <span className="text-white font-semibold">high-performance systems</span>. 
                 </p>
                 <p>
-                  With a deep specialization in the Java ecosystem, specifically Spring Boot and Microservices, I build systems that don&apos;t just function—they endure. My approach is rooted in precision, ensuring that every millisecond of latency is accounted for and every byte of data is secured.
+                  With a deep specialization in the Java ecosystem, Spring Boot, and full-stack web technologies, I build systems that don&apos;t just function—they endure. My approach is rooted in precision, ensuring clean code, robust API design, and reliable delivery.
                 </p>
                 <div className="p-6 md:p-8 bg-surface-container border-l-4 border-primary-container italic glass-card text-left">
                   &quot;Complexity is a challenge to be simplified, not a feature to be celebrated. True engineering is found in the elegance of a perfectly optimized query.&quot;
